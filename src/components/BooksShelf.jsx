@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BookShelf = () => {
+const BooksShelf = () => {
   return (
     <div className="list-books-content">
               <div>
@@ -157,4 +157,4 @@ const BookShelf = () => {
   )
 }
 
-export default BookShelf;
+export default BooksShelf;
