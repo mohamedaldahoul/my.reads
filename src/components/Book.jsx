@@ -1,14 +1,11 @@
 import React, {useState} from 'react'
-import * as BooksAPI from '../BooksAPI'
 
 const Book = ({book, updateBook} ) => {
   const [shelf, setShelf] = useState(book.shelf)
   console.log(updateBook);
   
   const handleChange = (e) => {
-    setShelf(e.target.value)
-    console.log('value', e.target.value);
-    
+    setShelf(e.target.value)    
     updateBook(book, e.target.value);
   } 
   return (

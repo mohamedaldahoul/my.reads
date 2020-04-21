@@ -48,7 +48,9 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks closeSearch={this.closeSearchPage} />
+          <SearchBooks 
+            closeSearch={this.closeSearchPage}
+            />
         ) : (
           <div className="list-books">
             <Header />
