@@ -1,7 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
+import * as BooksAPI from '../BooksAPI'
 
-const Book = ({book}) => {
+const Book = ({book, updateBook} ) => {
+  const [shelf, setShelf] = useState(book.shelf)
+  console.log(updateBook);
   
+  const handleChange = (e) => {
+    setShelf(e.target.value)
+    console.log('value', e.target.value);
+    
+    updateBook(book, e.target.value);
+  } 
   return (
     <div className="book">
       <div className="book-top">
@@ -13,7 +22,7 @@ const Book = ({book}) => {
             backgroundImage: `url(${book.imageLinks.thumbnail})`
             }}></div>
         <div className="book-shelf-changer">
-          <select>
+          <select value={shelf} onChange={handleChange}>
             <option value="move" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>

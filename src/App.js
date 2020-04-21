@@ -26,6 +26,17 @@ class BooksApp extends React.Component {
         this.setState(() => ({  booksList: response }))
     })
   }
+
+  updateBookShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    .then(() => { 
+      BooksAPI.getAll()
+      .then((response) => { 
+        
+        this.setState(() => ({  booksList: response }))
+    })      
+  })
+  }
   
 
   openSearchPage = () => this.setState({ showSearchPage: true })
@@ -43,6 +54,7 @@ class BooksApp extends React.Component {
             <Header />
             <BooksShelves 
               booksList={booksList}
+              updateBook={this.updateBookShelf}
             />
             <SearchOpener openSearch={this.openSearchPage} />
           </div>

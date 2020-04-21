@@ -1,7 +1,7 @@
 import React from 'react'
 import Book from './Book'
 
-const BooksShelves = ({booksList}) => {
+const BooksShelves = ({booksList, updateBook}) => {
   return (
     <div className="list-books-content">
       <div>
@@ -13,7 +13,10 @@ const BooksShelves = ({booksList}) => {
                 .filter(book => book.shelf === 'currentlyReading')
                 .map( book => 
                   <li key={book.id}>
-                    <Book book={book} />
+                    <Book 
+                      book={book} 
+                      updateBook={updateBook}
+                    />
                   </li>
                 )}
             </ol>
@@ -27,7 +30,10 @@ const BooksShelves = ({booksList}) => {
                 .filter(book => book.shelf === 'wantToRead')
                 .map( book => 
                   <li key={book.id}>
-                    <Book book={book} />
+                    <Book 
+                      book={book} 
+                      updateBook={updateBook}
+                      />
                   </li>
                 )}
             </ol>
@@ -41,7 +47,10 @@ const BooksShelves = ({booksList}) => {
                 .filter(book => book.shelf === 'read')
                 .map( book => 
                   <li key={book.id}>
-                    <Book book={book} />
+                    <Book 
+                      book={book}
+                      updateBook={updateBook}
+                      />
                   </li>
                 )}
             </ol>
