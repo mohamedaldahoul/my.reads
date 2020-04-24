@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as BooksAPI from '../../BooksAPI'
 import Book from '../Book';
 
 
-const SearchBooks = ({closeSearch, updateBook, booksList}) => {
+const SearchBooks = ({updateBook, booksList}) => {
   const [query, setQuery] = useState('');
   const [books, setBooks] = useState([]);
 
@@ -14,7 +15,6 @@ const SearchBooks = ({closeSearch, updateBook, booksList}) => {
     if(query!=='') {
       BooksAPI.search(query).then(books => {
         if(books.length > 0) {
-          console.log(books);
           return setBooks(books)
       } else {
         return null; 
@@ -58,7 +58,6 @@ const SearchBooks = ({closeSearch, updateBook, booksList}) => {
               updateQuery()
             }}
           />
-
         </div>
       </div>
       <div className="search-books-results">
@@ -81,5 +80,8 @@ const SearchBooks = ({closeSearch, updateBook, booksList}) => {
     </div>
   )
 }
-
+SearchBooks.propTypes = {
+  updateBook: PropTypes.func.isRequired,
+  booksList: PropTypes.array.isRequired, 
+}
 export default SearchBooks;
