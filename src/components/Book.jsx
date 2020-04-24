@@ -19,7 +19,7 @@ const Book = ({book, updateBook, bookShelf} ) => {
             }}></div>
         <div className="book-shelf-changer">
           <select value={shelf} onChange={handleChange}>
-            <option value="move" disabled={shelf}>Move to...</option>
+            <option value="move" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
             <option value="read">Read</option>

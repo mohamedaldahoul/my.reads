@@ -1,5 +1,5 @@
 import React from 'react'
-import Book from './Book'
+import Book from '../Book'
 
 const BooksShelves = ({booksList, updateBook}) => {
   return (
@@ -13,8 +13,9 @@ const BooksShelves = ({booksList, updateBook}) => {
                 .filter(book => book.shelf === 'currentlyReading')
                 .map( book => 
                   <li key={book.id}>
-                    <Book 
-                      book={book} 
+                    <Book
+                      book={book}
+                      bookShelf={book.shelf}
                       updateBook={updateBook}
                     />
                   </li>
@@ -31,7 +32,8 @@ const BooksShelves = ({booksList, updateBook}) => {
                 .map( book => 
                   <li key={book.id}>
                     <Book 
-                      book={book} 
+                      book={book}
+                      bookShelf={book.shelf} 
                       updateBook={updateBook}
                       />
                   </li>
@@ -49,6 +51,7 @@ const BooksShelves = ({booksList, updateBook}) => {
                   <li key={book.id}>
                     <Book 
                       book={book}
+                      bookShelf={book.shelf}
                       updateBook={updateBook}
                       />
                   </li>

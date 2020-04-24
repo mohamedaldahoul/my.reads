@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import * as BooksAPI from '../BooksAPI'
-import Book from './Book';
+import * as BooksAPI from '../../BooksAPI'
+import Book from '../Book';
 
 
 const SearchBooks = ({closeSearch, updateBook, booksList}) => {
