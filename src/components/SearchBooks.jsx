@@ -1,6 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
+import * as BooksAPI from '../BooksAPI'
+import Book from './Book';
 
-const SearchBooks = ({closeSearch}) => {
+
+const SearchBooks = ({closeSearch, updateBook, booksList}) => {
+  const [query, setQuery] = useState('');
+  const [books, setBooks] = useState([]);
+
+  const updateQuery = () => {
+    
+    if(query!=='') {
+      BooksAPI.search(query).then(books => {
+        if(books.length > 0) {
+          console.log(books);
+          return setBooks(books)
+      } else {
+        return null; 
+        }
+      }) 
+    } else {
+      return null; 
+    }
+  }
+
+  const bookShelf = (bookObj) => {
+    for( let i = 0; i < booksList.length; i++){
+      if(bookObj.id === booksList[i].id )
+      return booksList[i].shelf
+    }
+    return "none"
+  }
+  
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -16,12 +46,35 @@ const SearchBooks = ({closeSearch}) => {
             However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
             you don't find a specific author or title. Every search is limited by search terms.
           */}
-          <input type="text" placeholder="Search by title or author"/>
+          <input 
+            type="text"
+            placeholder="Search by title or author"
+            className='search-contacts'
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value)
+              updateQuery()
+            }}
+          />
 
         </div>
       </div>
       <div className="search-books-results">
-        <ol className="books-grid"></ol>
+        <ol className="books-grid">
+          { books != null 
+          && !books.hasOwnProperty('error') 
+          && query!=='' 
+          && books.map(book => 
+            <li key={book.id}>
+              {book.title}
+              <Book
+                bookShelf={bookShelf(book)}
+                book={book}
+                updateBook={updateBook}
+              />
+            </li>
+          )}
+        </ol>
       </div>
     </div>
   )

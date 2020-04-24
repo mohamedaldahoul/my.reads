@@ -18,18 +18,18 @@ class BooksApp extends React.Component {
     booksList: [],
   }
 
+  fetchBooks = () => BooksAPI.getAll()
+    .then((response) => this.setState({  
+        booksList: response 
+      })
+    )
+
   componentDidMount() {
-    BooksAPI.getAll()
-      .then(
-        (response) => this.setState(
-        () => ({  booksList: response }))
-  )}
+    this.fetchBooks();
+    }
 
   updateBookShelf = (book, shelf) => BooksAPI.update(book, shelf)
-    .then(
-      () => BooksAPI.getAll()
-      .then((response) => this.setState(
-        () => ({  booksList: response }))))
+    .then(() => this.fetchBooks())
   
   openSearchPage = () => this.setState({ showSearchPage: true })
 
@@ -40,7 +40,9 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks 
+          <SearchBooks
+            booksList={booksList}
+            updateBook={this.updateBookShelf} 
             closeSearch={this.closeSearchPage}
             />
         ) : (
