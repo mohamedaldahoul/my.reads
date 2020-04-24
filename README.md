@@ -1,3 +1,24 @@
+## Myreads Udacity Project
+contains: 
+### home-page
+=> BooksShelves.jsx rendering the 3 types of shelves: `Read` , `Want To Read`, `Currently Reading`
+=> Header.jsx rendering the Header component `My Reads`
+=> Home.jsx contain all the components of the home page `Header`, `BooksShelves` and `SearchOpener`
+=> index.js
+=> SearchOpener.jsx => button redirect to `Search page`
+
+### seach-page
+=> index.js
+=> SearchBooks.jsx renders the seach input and the books list where you can add books to the shelves.
+
+### Book.jsx
+### icons
+### App.js
+
+React Hooks has been used for some of the components 
+
+### ----------------------------------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
