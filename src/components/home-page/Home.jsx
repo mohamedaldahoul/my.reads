@@ -3,7 +3,7 @@ import Header from './Header'
 import BooksShelves from './BooksShelves';
 import SearchOpener from './SearchOpener';
 
-const Home = ({updateBook, booksList, openSearchPage }) => {
+const Home = ({updateBook, booksList, openSearch }) => {
   return (
     <div className="list-books">
       <Header />
@@ -11,7 +11,7 @@ const Home = ({updateBook, booksList, openSearchPage }) => {
         booksList={booksList}
         updateBook={updateBook}
       />
-      <SearchOpener openSearch={openSearchPage} />
+      <SearchOpener openSearch={openSearch} />
     </div>
   )
 }

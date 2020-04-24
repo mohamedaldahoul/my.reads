@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
+
 import * as BooksAPI from '../../BooksAPI'
 import Book from '../Book';
 
@@ -24,7 +26,7 @@ const SearchBooks = ({closeSearch, updateBook, booksList}) => {
   }
 
   const bookShelf = (bookObj) => {
-    for( let i = 0; i < booksList.length; i++){
+    for(let i = 0; i < booksList.length; i++){
       if(bookObj.id === booksList[i].id )
       return booksList[i].shelf
     }
@@ -34,9 +36,9 @@ const SearchBooks = ({closeSearch, updateBook, booksList}) => {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <div>
-          <button className="close-search" onClick={closeSearch}>Close</button>
-        </div>
+        <Link to='/'>
+          <button className="close-search">Close</button>
+        </Link>
         <div className="search-books-input-wrapper">
           {/*
             NOTES: The search from BooksAPI is limited to a particular set of search terms.
