@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './components/search-page';
 import Home from './components/home-page';
+import ErrorPage from './components/error-page'
 
 class BooksApp extends React.Component {
   state = {
@@ -53,10 +54,12 @@ class BooksApp extends React.Component {
         closeSearch={this.closeSearchPage}
       />
     )
+
     return (
       <div className="app">
         <Route exact path='/' component={HomePage}/>
         <Route exact path='/search' component={SearchPage}/>
+        <Route component={ErrorPage} />
       </div>
     )
   }
