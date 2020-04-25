@@ -10,18 +10,18 @@ const SearchBooks = ({updateBook, booksList}) => {
   const [query, setQuery] = useState('');
   const [books, setBooks] = useState([]);
 
-  const updateQuery = () => {
+  const updateQuery = (query) => {
     
     if(query!=='') {
       BooksAPI.search(query).then(books => {
         if(books.length > 0) {
           return setBooks(books)
       } else {
-        return null; 
+        return setBooks([]); 
         }
       }) 
     } else {
-      return null; 
+      return setBooks([]); 
     }
   }
 
@@ -55,26 +55,29 @@ const SearchBooks = ({updateBook, booksList}) => {
             value={query}
             onChange={(e) => {
               setQuery(e.target.value)
-              updateQuery()
-            }}
+              updateQuery(e.target.value)
+            }
+            }
           />
         </div>
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          { books != null 
-          && !books.hasOwnProperty('error') 
+          {books != null 
+          && !books.hasOwnProperty('error')
+          && books.length > 0 
           && query!=='' 
-          && books.map(book => 
+          ? books.map(book => 
             <li key={book.id}>
               {book.title}
               <Book
                 bookShelf={bookShelf(book)}
                 book={book}
                 updateBook={updateBook}
-              />
+                />
             </li>
-          )}
+          ) : null}
+          {query !== '' && books.length === 0 ? <div>No books found</div> : null}
         </ol>
       </div>
     </div>
